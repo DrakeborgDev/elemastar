@@ -1,0 +1,76 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjab4u5bgpwg"]
+
+[ext_resource type="Script" uid="uid://daxeec5s4d01u" path="res://scripts/settings.gd" id="1_urrvo"]
+
+[node name="Settings" type="Control"]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_urrvo")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+custom_minimum_size = Vector2(100, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 0
+
+[node name="Audio" type="GridContainer" parent="TabContainer"]
+custom_minimum_size = Vector2(10, 1)
+layout_mode = 2
+columns = 2
+metadata/_tab_index = 0
+
+[node name="Label3" type="Label" parent="TabContainer/Audio"]
+layout_mode = 2
+text = "volume: "
+
+[node name="masterVol" type="OptionButton" parent="TabContainer/Audio"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/Audio"]
+layout_mode = 2
+text = "Music: "
+
+[node name="MusicVol" type="OptionButton" parent="TabContainer/Audio"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="TabContainer/Audio"]
+layout_mode = 2
+text = "Sound effects: "
+
+[node name="sfxVol" type="OptionButton" parent="TabContainer/Audio"]
+layout_mode = 2
+
+[node name="Video" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Label" type="Label" parent="TabContainer/Video"]
+layout_mode = 2
+text = "To Be Made Eventually"
+horizontal_alignment = 1
+
+[node name="main_menu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 414.0
+offset_top = 1.0
+offset_right = 510.0
+offset_bottom = 32.0
+text = "Main Menu"
+
+[connection signal="item_selected" from="TabContainer/Audio/masterVol" to="." method="_on_master_vol_item_selected"]
+[connection signal="item_selected" from="TabContainer/Audio/MusicVol" to="." method="_on_music_vol_item_selected"]
+[connection signal="item_selected" from="TabContainer/Audio/sfxVol" to="." method="_on_sfx_vol_item_selected"]
+[connection signal="pressed" from="main_menu" to="." method="_on_main_menu_pressed"]

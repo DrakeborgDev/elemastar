@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj8g0lsitk66x"]
+
+[ext_resource type="Script" uid="uid://b284fk3y1i4e1" path="res://scripts/main_menu.gd" id="1_8gy84"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_8gy84")
+
+[node name="Start" type="Button" parent="."]
+offset_left = 320.0
+offset_top = 256.0
+offset_right = 832.0
+offset_bottom = 320.0
+text = "Begin"
+
+[node name="Settings" type="Button" parent="."]
+offset_left = 320.0
+offset_top = 384.0
+offset_right = 832.0
+offset_bottom = 448.0
+text = "Settings"
+
+[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]

@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4v4pg7qsaqjk"]
+
+[ext_resource type="Script" uid="uid://bw2ntvapwjs7h" path="res://scripts/battle_select.gd" id="1_2hlqo"]
+
+[node name="BattleSelect" type="Node2D"]
+script = ExtResource("1_2hlqo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 500.0
+offset_top = 88.0
+offset_right = 595.0
+offset_bottom = 154.0
+
+[node name="back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="fight" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "FIGHT!"
+
+[connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/fight" to="." method="_on_fight_pressed"]
