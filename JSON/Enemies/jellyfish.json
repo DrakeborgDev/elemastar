@@ -1,0 +1,23 @@
+{
+	"name": "Jellyfish",
+	"sprite": "enemies/jellyfish",
+	"health": 15,
+	"attacks": [
+		{
+			"type": "Electric",
+			"damage": 3,
+			"scale": "damage"
+		}
+	],
+	"weaknesses": [
+		"Air"
+	],
+	"resistances": [
+		"Water",
+		"Electric"
+	],
+	"rewards": [
+		"bittergem": 2,
+		"xp": 5
+	]
+}

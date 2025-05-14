@@ -1,0 +1,8 @@
+{
+	"name": "Punch",
+	"type": "Force",
+	"active":{
+		"targets": 1,
+		"damage": 5
+	}
+}

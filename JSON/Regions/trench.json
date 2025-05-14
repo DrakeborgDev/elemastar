@@ -1,0 +1,12 @@
+{
+	"name": "Ocean Trench",
+	"description": "A Dark and sodden abyss",
+	"affinities": [
+		"Water",
+		"Light"
+	],
+	"enemies": [
+		"Jellyfish",
+		"Kraken"
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"name": "Desert",
+	"description": "A hot and sunny environment",
+	"affinities": [
+		"Light",
+		"Fire"
+	],
+	"enemies": [
+		"salamander",
+		"beacon"
+	]
+}

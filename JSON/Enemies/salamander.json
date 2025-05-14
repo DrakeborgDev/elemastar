@@ -1,0 +1,23 @@
+{
+	"name": "Salamander",
+	"sprite": "enemies/salamander",
+	"health": 15,
+	"attacks": [
+		{
+			"type": "Fire",
+			"damage": 3,
+			"scale": "damage"
+		}
+	],
+	"weaknesses": [
+		"Water",
+		"Dark"
+	],
+	"resistances": [
+		"Fire"
+	],
+	"rewards": {
+		"bittergem": 2,
+		"xp": 5
+	}
+}

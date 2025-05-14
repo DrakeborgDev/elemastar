@@ -1,0 +1,33 @@
+{
+	"name": "Beacon",
+	"sprite": "enemies/beacon",
+	"health": 25,
+	"attacks": [
+		{
+			"type": "Light",
+			"damage": 3,
+			"scale": "damage"
+		},
+		{
+			"type": "Fire",
+			"damage": 1,
+			"status": {
+				"target": "player"
+				"type": "subtractive",
+				"amount": 2,
+				"durration": 1,
+				"scale": "durration"
+			}
+		}
+	],
+	"weaknesses": [
+		"Dark"
+	],
+	"resistances": [
+		"Light"
+	],
+	"rewards": {
+		"bittergem": 6,
+		"xp": 10
+	}
+}

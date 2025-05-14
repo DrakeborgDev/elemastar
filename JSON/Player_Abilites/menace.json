@@ -1,0 +1,13 @@
+{
+	"name": "menace",
+	"type": "Dark",
+	"passive": {
+		"boost": {
+			"type": "addative",
+			"target": "player"
+			"amount": 2
+		}
+	},
+	"unlock": 2,
+	"parent": "Frighten"
+}
