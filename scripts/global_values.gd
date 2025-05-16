@@ -12,6 +12,7 @@ var unlocked
 var equipped
 
 # battle vars
+var allSkills = []
 var allRegions = []
 var activeRegion
 var affinityElement

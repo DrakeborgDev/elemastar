@@ -6,7 +6,7 @@
 		"damage": 1,
 		"status": {
 			"type": "subtractive",
-			"amount": 2
+			"amount": 2,
 			"durration": 1,
 			"scale": "amount"
 		}

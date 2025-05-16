@@ -6,10 +6,15 @@
 script = ExtResource("1_bsmho")
 
 [node name="back" type="Button" parent="."]
-offset_left = 497.0
-offset_top = 138.0
-offset_right = 593.0
-offset_bottom = 169.0
+offset_left = 510.0
+offset_top = 75.0
+offset_right = 606.0
+offset_bottom = 106.0
 text = "Main Menu"
+
+[node name="SkillContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

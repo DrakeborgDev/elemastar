@@ -1,9 +1,9 @@
 {
 	"name": "Solar Ray",
 	"type": "Light",
-	"active":{
+	"active": {
 		"targets": 1,
-		"damage": 6
+		"damage": 6,
 		"scale": "damage"
 	},
 	"unlock": 1
