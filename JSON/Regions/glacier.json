@@ -1,0 +1,12 @@
+{
+	"name": "Glacial summit",
+	"description": "",
+	"affinities": [
+		"Water",
+		"Light"
+	],
+	"enemies": [
+		"beacon",
+		"kraken"
+	]
+}

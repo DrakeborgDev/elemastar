@@ -3,10 +3,10 @@
 	"description": "A Dark and sodden abyss",
 	"affinities": [
 		"Water",
-		"Light"
+		"Dark"
 	],
 	"enemies": [
-		"Jellyfish",
-		"Kraken"
+		"jellyfish",
+		"kraken"
 	]
 }
