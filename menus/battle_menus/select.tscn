@@ -18,7 +18,8 @@ text = "Back"
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
+[node name="regionSelector" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="fight" type="Button" parent="VBoxContainer/HBoxContainer"]

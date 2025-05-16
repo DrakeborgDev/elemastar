@@ -62,15 +62,13 @@ layout_mode = 2
 text = "To Be Made Eventually"
 horizontal_alignment = 1
 
-[node name="main_menu" type="Button" parent="."]
-layout_mode = 0
-offset_left = 414.0
-offset_top = 1.0
-offset_right = 510.0
-offset_bottom = 32.0
-text = "Main Menu"
+[node name="Return to Main Menu" type="Button" parent="TabContainer"]
+visible = false
+layout_mode = 2
+text = "Confirm Return?"
+metadata/_tab_index = 2
 
 [connection signal="item_selected" from="TabContainer/Audio/masterVol" to="." method="_on_master_vol_item_selected"]
 [connection signal="item_selected" from="TabContainer/Audio/MusicVol" to="." method="_on_music_vol_item_selected"]
 [connection signal="item_selected" from="TabContainer/Audio/sfxVol" to="." method="_on_sfx_vol_item_selected"]
-[connection signal="pressed" from="main_menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="TabContainer/Return to Main Menu" to="." method="_on_main_menu_pressed"]
