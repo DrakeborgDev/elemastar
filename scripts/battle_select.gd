@@ -11,14 +11,14 @@ func _ready() -> void:
 			var curFile_as_dict = json.parse(curFile_as_text)
 			if curFile_as_dict == OK:
 				var data = json.data
-				print(json.get_data())
+				#print(json.get_data())
 				%regionSelector.add_item(data.name)
 				
 				#add the json object to the allRegions list
 				GlobalValues.allRegions.append(curFile_as_text)
 			else: 
 				print("JSON Parse Error: ", json.get_error_message(), " in ", curFile, " at line ", json.get_error_line())
-			print(GlobalValues.allRegions)
+			#print(GlobalValues.allRegions)
 	else:
 		for region in GlobalValues.allRegions:
 			var json = JSON.new()
@@ -39,7 +39,6 @@ func _on_fight_pressed() -> void:
 		if curData.name == %regionSelector.get_item_text(%regionSelector.get_selected_id()):
 			print("found The region")
 			fightData = curData
-	
 	var affinitySize
 	if fightData.affinities != null:
 		affinitySize = fightData.affinities.size()-1
@@ -52,5 +51,5 @@ func _on_fight_pressed() -> void:
 	GlobalValues.opponent = fightData.enemies[randi_range(0, enemySize)]
 	GlobalValues.affinityModifier = 0
 	#print(fightData)
-	print("Region: ", str(GlobalValues.activeRegion), ", Element: ", str(GlobalValues.affinityElement), ", Versing: ", str(GlobalValues.opponent), ", Resetting Affinity Modifier")
+	
 	get_tree().change_scene_to_file("res://menus/battle_menus/fight.tscn")

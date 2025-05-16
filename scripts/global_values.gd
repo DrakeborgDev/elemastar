@@ -6,10 +6,11 @@ var sfxVol = 75
 var musicVol = 75
 
 # progress
-var xp
-var bittergems
-var unlocked
-var equipped
+var xp = 0
+var lvl = 0
+var bittergems = 0
+var unlocked = []
+var equipped = []
 
 # battle vars
 var allSkills = []
@@ -18,3 +19,5 @@ var activeRegion
 var affinityElement
 var affinityModifier
 var opponent
+var playerMaxHealth = 20
+var playerCurentHealth = 20

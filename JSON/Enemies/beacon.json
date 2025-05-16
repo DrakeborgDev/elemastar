@@ -12,7 +12,7 @@
 			"type": "Fire",
 			"damage": 1,
 			"status": {
-				"target": "player"
+				"target": "player",
 				"type": "subtractive",
 				"amount": 2,
 				"durration": 1,

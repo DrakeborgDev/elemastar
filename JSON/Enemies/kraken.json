@@ -9,10 +9,14 @@
 			"scale": "damage"
 		}
 	],
-	"weaknesses": [],
-	"resistances": [],
-	"rewards": [
+	"weaknesses": [
+		"Air"
+	],
+	"resistances": [
+		"Water"
+	],
+	"rewards": {
 		"bittergem": 4,
 		"xp": 10
-	]
+	}
 }

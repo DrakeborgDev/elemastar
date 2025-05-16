@@ -5,11 +5,66 @@
 [node name="Fight" type="Node2D"]
 script = ExtResource("1_cic3x")
 
-[node name="back" type="Button" parent="."]
-offset_left = 497.0
-offset_top = 137.0
-offset_right = 593.0
-offset_bottom = 168.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 487.0
+offset_top = 118.0
+offset_right = 532.0
+offset_bottom = 184.0
+
+[node name="back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
 text = "Back"
 
-[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[node name="Skip" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Skip"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Fight" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Fight"
+
+[node name="EnemyDetails" type="VBoxContainer" parent="."]
+offset_left = 948.3
+offset_top = 20.0
+offset_right = 1133.3
+offset_bottom = 97.0
+
+[node name="Name" type="Label" parent="EnemyDetails"]
+layout_mode = 2
+text = "enemy name"
+
+[node name="Health" type="Label" parent="EnemyDetails"]
+layout_mode = 2
+text = "enemy health"
+
+[node name="Affinity" type="Label" parent="EnemyDetails"]
+layout_mode = 2
+text = "Element at strenght 100"
+
+[node name="PlayerDetails" type="VBoxContainer" parent="."]
+offset_left = -1.0
+offset_top = 19.0
+offset_right = 103.0
+offset_bottom = 96.0
+
+[node name="BitterGem" type="Label" parent="PlayerDetails"]
+layout_mode = 2
+text = "Bittergems: #"
+
+[node name="Health" type="Label" parent="PlayerDetails"]
+layout_mode = 2
+text = "Player health"
+
+[node name="XP" type="Label" parent="PlayerDetails"]
+layout_mode = 2
+text = "XP: #/#"
+
+[connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="VBoxContainer/Skip" to="." method="_on_skip_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Fight" to="." method="_on_fight_pressed"]

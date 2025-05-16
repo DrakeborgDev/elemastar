@@ -14,7 +14,10 @@ text = "Main Menu"
 
 [node name="SkillContainer" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 482.0
+offset_top = 131.0
+offset_right = 522.0
+offset_bottom = 171.0
+scale = Vector2(4.56, 3.56)
 
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]
