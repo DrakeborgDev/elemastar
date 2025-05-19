@@ -41,6 +41,7 @@ func _enemy_attack():
 				GlobalValues.playerCurentHealth -= (activeAttack.damage - GlobalValues.affinityModifier)
 	if GlobalValues.playerCurentHealth <= 0:
 		print("mission failed, you'll get them next time")
+		GlobalValues.playerCurentHealth = GlobalValues.playerMaxHealth
 		get_tree().change_scene_to_file("res://menus/battle_menus/select.tscn")
 	else:
 		$PlayerDetails/Health.text = "Health: "+str(int(GlobalValues.playerCurentHealth)) + "/" + str(int(GlobalValues.playerMaxHealth))
