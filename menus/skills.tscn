@@ -23,12 +23,19 @@ offset_bottom = 118.0
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_f7j42")
-theme_override_constants/separation = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="HSplitContainer/SkillContainer"]
+layout_mode = 2
+text = "Unequiped Skills"
 
 [node name="equipedSkills" type="VBoxContainer" parent="HSplitContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_f7j42")
+
+[node name="Label" type="Label" parent="HSplitContainer/equipedSkills"]
+layout_mode = 2
+text = "Equiped Skills"
 
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]

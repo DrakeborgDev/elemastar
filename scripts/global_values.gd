@@ -1,3 +1,4 @@
+## Holds all variables that need to be passed between scenes
 extends Node
 
 # settings
@@ -9,8 +10,8 @@ var musicVol = 75
 var xp = 0
 var lvl = 0
 var bittergems = 0
-var unlocked = []
-var equipped = []
+var unlocked = ["Solar Ray"]
+var equipped = ["Punch"]
 
 # battle vars
 var allSkills = []

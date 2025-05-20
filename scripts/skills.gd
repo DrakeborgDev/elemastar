@@ -1,76 +1,70 @@
 extends Node2D
 
-#func _ready():
-
-
-
+func _load_skills(skill: String, where: String, dir: String = "res://JSON/Player_Abilites/"):
+	for skillPath in DirAccess.get_files_at(dir):
+		var json = JSON.new()
+		var found = false
+		var skillAsText = FileAccess.get_file_as_string(dir+skillPath)
+		var skillAsDict = json.parse(skillAsText)
+		var targetNode = get_node("HSplitContainer/"+where)
+		if skillAsDict == OK:
+			var data = json.data
+			for item in GlobalValues.equipped:
+				if item == data.name:
+					targetNode.add_child(Button.new())
+					for child in targetNode.get_children():
+						if child is Button:
+							if child.text == "":
+								child.text = data.name
+								child.connect("pressed", _button_testing)
+								print("Added " + data.name)
+			for item in GlobalValues.unlocked:
+				if item == data.name:
+					targetNode.add_child(Button.new())
+					for child in targetNode.get_children():
+						if child is Button:
+							if child.text == "":
+								child.text = data.name
+								child.connect("pressed", _button_testing)
+								print("Added " + data.name)
+		else:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", skill, ".json at line ", json.get_error_line())
 
 func _ready() -> void:
-	if GlobalValues.allSkills == []:
-		
-		for curFile in DirAccess.get_files_at("res://JSON/Player_Abilites"):
-			var curPath = "res://JSON/Player_Abilites/"+curFile
-			var curfile_as_text = FileAccess.get_file_as_string(curPath)
-			var json = JSON.new()
-			var curFile_as_dict = json.parse(curfile_as_text)
-			if curFile_as_dict == OK:
-				var storedData = []
-				var data = json.data
-				storedData.append(data.name)
-				if "parent" in data:
-					storedData.append(data.parent)
-				else:
-					storedData.append(null)
-				if "unlock" in data:
-					storedData.append(data.unlock)
-				else:
-					storedData.append(null)
-				storedData.append(data.type)
-				GlobalValues.allSkills.append(storedData)
-			else:
-				print("JSON Parse Error: ", json.get_error_message(), " in ", curFile, " at line ", json.get_error_line())
-		#print(GlobalValues.allSkills)
-	else:
-		pass
-	
-	var i = 0
-	for skill in GlobalValues.allSkills:
-		var skillName = skill[0]
-		var skillParent
-		var tooltip
-		var _skillCost
-		if skill[1] != null:
-			skillParent = skill[1]
-			tooltip = ("requires " + str(skillParent) + " to be unlocked first")
-		else:
-			tooltip = ""
-		if skill[2] != null:
-			_skillCost = skill[2]
-		print(skill)
-	
-		%SkillContainer.add_child(Button.new())
-		var curButton = %SkillContainer.get_child(i)
-		curButton.text = skillName
-		curButton.tooltip_text = tooltip
-		curButton.connect("pressed", _button_testing)
-		i = i+1
+	for skill in GlobalValues.equipped:
+		_load_skills(skill,"equipedSkills")
+	for skill in GlobalValues.unlocked:
+		_load_skills(skill,"SkillContainer")
 
 func _button_testing():
 	var found_clicked = false
 	for button in get_node("HSplitContainer/SkillContainer").get_children():
-		if button.is_pressed():
-			found_clicked = true
-			print(str(button))
-			button.reparent(get_node("HSplitContainer/equipedSkills"))
-	if !found_clicked:
-		for button in get_node("HSplitContainer/equipedSkills").get_children():
+		if button is Button:
 			if button.is_pressed():
 				found_clicked = true
-				print(str(button))
-				button.reparent(get_node("HSplitContainer/SkillContainer"))
+				print("Equiping " + button.text)
+				button.reparent(get_node("HSplitContainer/equipedSkills"))
+	if !found_clicked:
+		for button in get_node("HSplitContainer/equipedSkills").get_children():
+			if button is Button:
+				if button.is_pressed():
+					found_clicked = true
+					print("Unequiping " + button.text)
+					button.reparent(get_node("HSplitContainer/SkillContainer"))
 	pass
 
 func _on_back_pressed() -> void:
-	for button in get_node("HSplitContainer/equipedSkills").get_children():
-		print(button.text)
+	GlobalValues.equipped = []
+	GlobalValues.unlocked = []
+	# TODO don't append the text, append the file-name thats name property matches the text
+	for skill in get_node("HSplitContainer/SkillContainer").get_children():
+		if skill is Button:
+			GlobalValues.unlocked.append(skill.text)
+	for skill in get_node("HSplitContainer/equipedSkills").get_children():
+		if skill is Button:
+			GlobalValues.equipped.append(skill.text)
+	if GlobalValues.equipped == []:
+		GlobalValues.equipped = ["Punch"]
+		GlobalValues.unlocked.erase("Punch")
+	print(str(GlobalValues.equipped))
 	get_tree().change_scene_to_file("res://menus/hub_menu.tscn")
