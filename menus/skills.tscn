@@ -27,7 +27,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="HSplitContainer/SkillContainer"]
 layout_mode = 2
-text = "Unequiped Skills"
+text = "Unequipped Skills"
 
 [node name="equipedSkills" type="VBoxContainer" parent="HSplitContainer"]
 unique_name_in_owner = true
@@ -36,6 +36,6 @@ theme = ExtResource("2_f7j42")
 
 [node name="Label" type="Label" parent="HSplitContainer/equipedSkills"]
 layout_mode = 2
-text = "Equiped Skills"
+text = "Equipped Skills"
 
 [connection signal="pressed" from="back" to="." method="_on_back_pressed"]
