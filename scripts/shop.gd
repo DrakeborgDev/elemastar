@@ -20,12 +20,6 @@ func _check_skills(ownedSkills):
 					pass
 				else:
 					exclude = true
-			
-			# TODO: Remove this check after implementing passives
-			if "active" in data:
-				pass
-			else:
-				exclude = true
 
 			if !exclude:
 				%purchasable.add_child(Button.new())

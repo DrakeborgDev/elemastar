@@ -48,6 +48,7 @@ func _toggle_equipped():
 	pass
 
 func _on_back_pressed() -> void:
+	var dir = "res://JSON/Player_Abilites/"
 	GlobalValues.equipped = []
 	GlobalValues.unlocked = []
 	for skill in get_node("HSplitContainer/SkillContainer").get_children():
@@ -56,8 +57,17 @@ func _on_back_pressed() -> void:
 	for skill in get_node("HSplitContainer/equipedSkills").get_children():
 		if skill is Button:
 			GlobalValues.equipped.append(skill.text)
-	if GlobalValues.equipped == []:
-		GlobalValues.equipped = ["Punch"]
-		GlobalValues.unlocked.erase("Punch")
+	#if GlobalValues.equipped == []:
+		#GlobalValues.equipped = ["Punch"]
+		#GlobalValues.unlocked.erase("Punch")
+	for skill in GlobalValues.equipped:
+		for skillFile in DirAccess.get_files_at(dir):
+			var json = JSON.new()
+			var skillAsText = FileAccess.get_file_as_string(dir+skillFile)
+			var skillAsDict = json.parse(skillAsText)
+			if skillAsDict == OK:
+				pass
+			else:
+				print("JSON Parse Error: ", json.get_error_message(), " in ", skillFile, " at line ", json.get_error_line())
 	print(str(GlobalValues.equipped))
 	get_tree().change_scene_to_file("res://menus/hub_menu.tscn")

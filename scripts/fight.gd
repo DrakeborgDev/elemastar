@@ -2,6 +2,7 @@ extends Node2D
 
 var enemyMaxHealth
 var equippedAttacks = []
+var equipppedPassives = []
 
 func _ready() -> void:
 	print("Region: ", str(GlobalValues.activeRegion), ", Element: ", str(GlobalValues.affinityElement), ", Versing: ", str(GlobalValues.opponent), ", Resetting Affinity Modifier")
@@ -103,5 +104,7 @@ func _load_player_attacks():
 					if "active" in data:
 						%SelectedSkill.add_item(data.name)
 						equippedAttacks.append(data)
+					if "passive" in data:
+						equipppedPassives.append(data)
 		else:
 			print("JSON Parse Error: ", json.get_error_message(), " in ", abilityFile, " at line ", json.get_error_line())
