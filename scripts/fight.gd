@@ -66,9 +66,10 @@ func _attack_affinity(type: String, baseDamage: int) -> int:
 				return total
 
 func _on_fight_pressed() -> void:
-	print(str(int(equippedAttacks[%SelectedSkill.selected].active.damage)))
 	
-	GlobalValues.opponent[0] -= _attack_affinity(equippedAttacks[%SelectedSkill.selected].type, int(equippedAttacks[%SelectedSkill.selected].active.damage))
+	var selectedAttack = equippedAttacks[%SelectedSkill.selected]
+	_check_passives(selectedAttack.type)
+	GlobalValues.opponent[0] -= _attack_affinity(selectedAttack.type, int(selectedAttack.active.damage) + _check_passives(selectedAttack.type))
 	_on_turn_advanced()
 
 func _load_enemy():
@@ -108,3 +109,10 @@ func _load_player_attacks():
 						equipppedPassives.append(data)
 		else:
 			print("JSON Parse Error: ", json.get_error_message(), " in ", abilityFile, " at line ", json.get_error_line())
+
+func _check_passives(type: String) -> int:
+	for passive in equipppedPassives:
+		if passive.type == type:
+			print(passive.name + " boosted the attack by " + str(int(passive.passive.boost.amount)))
+			return int(passive.passive.boost.amount)
+	return 0
