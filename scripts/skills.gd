@@ -19,7 +19,7 @@ func _load_skills(where: Node, list):
 						if child is Button:
 							if child.text == "":
 								child.text = data.name
-								child.connect("pressed", _button_testing)
+								child.connect("pressed", _toggle_equipped)
 								print("Added " + data.name)
 				else:
 					pass
@@ -30,7 +30,7 @@ func _ready() -> void:
 	_load_skills(%equipedSkills, GlobalValues.equipped)
 	_load_skills(%SkillContainer, GlobalValues.unlocked)
 
-func _button_testing():
+func _toggle_equipped():
 	var found_clicked = false
 	for button in get_node("HSplitContainer/SkillContainer").get_children():
 		if button is Button:

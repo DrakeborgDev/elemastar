@@ -1,0 +1,10 @@
+{
+	"name": "Hail Strike",
+	"type": "Water",
+	"active": {
+		"targets": 1,
+		"damage": 6
+	},
+	"unlock": 1,
+	"parent": "Fire Bolt"
+}

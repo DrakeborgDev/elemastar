@@ -1,6 +1,6 @@
 {
-	"name": "Solar Ray",
-	"type": "Light",
+	"name": "Fire Bolt",
+	"type": "Fire",
 	"active": {
 		"targets": 1,
 		"damage": 6

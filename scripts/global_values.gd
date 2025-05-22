@@ -9,8 +9,8 @@ var musicVol = 75
 # progress
 var xp = 0
 var lvl = 0
-var bittergems = 0
-var unlocked = ["Solar Ray", "Bless"]
+var bittergems = 5
+var unlocked = []
 var equipped = ["Punch"]
 
 # battle vars

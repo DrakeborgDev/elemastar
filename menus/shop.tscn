@@ -5,11 +5,22 @@
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_7lam4")
 
-[node name="back" type="Button" parent="."]
-offset_left = 497.0
-offset_top = 138.0
-offset_right = 593.0
-offset_bottom = 169.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 506.0
+offset_top = 18.0
+offset_right = 602.0
+offset_bottom = 76.0
+
+[node name="back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
 text = "Main Menu"
 
-[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Unlockable Skills"
+
+[node name="purchasable" type="VBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]

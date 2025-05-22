@@ -5,8 +5,7 @@
 	"attacks": [
 		{
 			"type": "Dark",
-			"damage": 5,
-			"scale": "damage"
+			"damage": 5
 		}
 	],
 	"weaknesses": [
