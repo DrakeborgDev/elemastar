@@ -78,3 +78,7 @@ func _on_heal_pressed() -> void:
 	else:
 		print("already full on health")
 	%Heal.text = "heal for " + str(int(GlobalValues.playerMaxHealth - GlobalValues.playerCurentHealth)) + "hp?"
+
+
+func _on_equip_pressed() -> void:
+	get_tree().change_scene_to_file("res://menus/skills.tscn")

@@ -12,11 +12,14 @@ func _ready() -> void:
 	$EnemyDetails/Affinity.text = GlobalValues.affinityElement + " at strenght " + str(GlobalValues.affinityModifier)
 	_load_enemy()
 	_load_player_attacks()
+	await _run_dialog(GlobalValues.affinityElement + " type attacks are boosted this fight")
 
 func _enemy_attack():
 	var attacks = GlobalValues.opponent[1]
 	var activeAttack = attacks[randi_range(0, attacks.size()-1)]
-	GlobalValues.playerCurentHealth -= _attack_affinity(activeAttack.type, activeAttack.damage)
+	var dmg = _attack_affinity(activeAttack.type, activeAttack.damage)
+	await _run_dialog("Opponent deals " + str(dmg) + " " +  activeAttack.type + " damage")
+	GlobalValues.playerCurentHealth -= dmg
 	if GlobalValues.playerCurentHealth <= 0:
 		print("mission failed, you'll get them next time")
 		GlobalValues.playerCurentHealth = GlobalValues.playerMaxHealth
@@ -33,7 +36,8 @@ func _on_turn_advanced():
 	GlobalValues.affinityModifier += 1
 	$EnemyDetails/Health.text = "Health: " + str(int(GlobalValues.opponent[0])) + "/" + str(enemyMaxHealth)
 	if GlobalValues.opponent[0] <= 0:
-		print("You Win!")
+		await _run_dialog(str($EnemyDetails/Name.text) + " Defeated")
+		await _run_dialog("You Earn " + str(int(GlobalValues.opponent[4].xp)) + " XP and " + str(int(GlobalValues.opponent[4].bittergem)) + " Bittergems")
 		GlobalValues.xp += GlobalValues.opponent[4].xp
 		GlobalValues.bittergems += GlobalValues.opponent[4].bittergem
 		GlobalValues.playerCurentHealth += int((GlobalValues.playerMaxHealth - GlobalValues.playerCurentHealth)/2)
@@ -46,7 +50,7 @@ func _on_turn_advanced():
 
 
 func _on_skip_pressed() -> void:
-	print(GlobalValues.opponent)
+	await _run_dialog("You bide your time")
 	_on_turn_advanced()
 
 func _attack_affinity(type: String, baseDamage: int) -> int:
@@ -69,7 +73,9 @@ func _on_fight_pressed() -> void:
 	
 	var selectedAttack = equippedAttacks[%SelectedSkill.selected]
 	_check_passives(selectedAttack.type)
-	GlobalValues.opponent[0] -= _attack_affinity(selectedAttack.type, int(selectedAttack.active.damage) + _check_passives(selectedAttack.type))
+	var dmg = _attack_affinity(selectedAttack.type, int(selectedAttack.active.damage) + _check_passives(selectedAttack.type))
+	await _run_dialog("You deal " + str(dmg) + " " + selectedAttack.type + " damage")
+	GlobalValues.opponent[0] -= dmg
 	_on_turn_advanced()
 
 func _load_enemy():
@@ -116,3 +122,15 @@ func _check_passives(type: String) -> int:
 			print(passive.name + " boosted the attack by " + str(int(passive.passive.boost.amount)))
 			return int(passive.passive.boost.amount)
 	return 0
+
+func _run_dialog(message: String):
+	get_tree().paused = true
+	%Continue.show()
+	print("setting textbox")
+	%DialogBox.text = message
+	await %Continue.pressed
+	%Continue.hide()
+	print("clearing textbox")
+	%DialogBox.text = ""
+	get_tree().paused = false
+	return

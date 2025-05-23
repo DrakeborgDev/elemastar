@@ -6,24 +6,26 @@
 [node name="Skills" type="Node2D"]
 script = ExtResource("1_bsmho")
 
-[node name="back" type="Button" parent="."]
-offset_left = 402.0
-offset_top = 2.0
-offset_right = 498.0
-offset_bottom = 33.0
-text = "Main Menu"
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 426.0
+offset_top = 3.0
+offset_right = 544.0
+offset_bottom = 43.0
+
+[node name="back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Return to Hub"
 
 [node name="HSplitContainer" type="HSplitContainer" parent="."]
-offset_left = 225.0
-offset_top = 78.0
-offset_right = 265.0
-offset_bottom = 118.0
+offset_left = 371.0
+offset_top = 92.0
+offset_right = 606.0
+offset_bottom = 132.0
 
 [node name="SkillContainer" type="VBoxContainer" parent="HSplitContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("2_f7j42")
-metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="HSplitContainer/SkillContainer"]
 layout_mode = 2
@@ -38,4 +40,4 @@ theme = ExtResource("2_f7j42")
 layout_mode = 2
 text = "Equipped Skills"
 
-[connection signal="pressed" from="back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]
