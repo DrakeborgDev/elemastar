@@ -14,12 +14,31 @@ offset_right = 532.0
 offset_bottom = 184.0
 
 [node name="back" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Back"
 
-[node name="Skip" type="Button" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
-text = "Skip"
+
+[node name="guardTypes" type="OptionButton" parent="VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+item_count = 5
+popup/item_0/text = "Fire"
+popup/item_0/id = 0
+popup/item_1/text = "Water"
+popup/item_1/id = 1
+popup/item_2/text = "Light"
+popup/item_2/id = 2
+popup/item_3/text = "Dark"
+popup/item_3/id = 3
+popup/item_4/text = "Electric"
+popup/item_4/id = 4
+
+[node name="Guard" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Guard"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -93,5 +112,5 @@ keep_pressed_outside = true
 texture_normal = ExtResource("3_4h40r")
 
 [connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="VBoxContainer/Skip" to="." method="_on_skip_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/Guard" to="." method="_guard"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/Fight" to="." method="_on_fight_pressed"]

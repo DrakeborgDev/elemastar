@@ -3,6 +3,8 @@ extends Node2D
 var enemyMaxHealth
 var equippedAttacks = []
 var equipppedPassives = []
+var guardAmount = 0
+var guardType = ""
 
 func _ready() -> void:
 	print("Region: ", str(GlobalValues.activeRegion), ", Element: ", str(GlobalValues.affinityElement), ", Versing: ", str(GlobalValues.opponent), ", Resetting Affinity Modifier")
@@ -18,10 +20,19 @@ func _enemy_attack():
 	var attacks = GlobalValues.opponent[1]
 	var activeAttack = attacks[randi_range(0, attacks.size()-1)]
 	var dmg = _attack_affinity(activeAttack.type, activeAttack.damage)
-	await _run_dialog("Opponent deals " + str(dmg) + " " +  activeAttack.type + " damage")
+	match guardType:
+		activeAttack.type:
+			dmg -= 2*guardAmount
+		"":
+			pass
+		_:
+			dmg -= guardAmount
+	if dmg <= 0:
+		dmg = 0
 	GlobalValues.playerCurentHealth -= dmg
+	await _run_dialog("Opponent deals " + str(dmg) + " " +  activeAttack.type + " damage")
 	if GlobalValues.playerCurentHealth <= 0:
-		print("mission failed, you'll get them next time")
+		await _run_dialog("mission failed, you'll get them next time")
 		GlobalValues.playerCurentHealth = GlobalValues.playerMaxHealth
 		get_tree().change_scene_to_file("res://menus/battle_menus/select.tscn")
 	else:
@@ -32,8 +43,7 @@ func _on_back_pressed() -> void:
 
 func _on_turn_advanced():
 	if GlobalValues.opponent[0] <= 0:
-		GlobalValues.opponent[0] = 0
-		$EnemyDetails/Health.text = "Health: " + str(int(GlobalValues.opponent[0])) + "/" + str(enemyMaxHealth)
+		$EnemyDetails/Health.text = "Health: 0/" + str(enemyMaxHealth)
 		await _run_dialog(str($EnemyDetails/Name.text) + " Defeated")
 		await _run_dialog("You Earn " + str(int(GlobalValues.opponent[4].xp)) + " XP and " + str(int(GlobalValues.opponent[4].bittergem)) + " Bittergems")
 		GlobalValues.xp += GlobalValues.opponent[4].xp
@@ -43,14 +53,17 @@ func _on_turn_advanced():
 		GlobalValues.opponent = null
 		get_tree().change_scene_to_file("res://menus/hub_menu.tscn")
 	else:
+		$EnemyDetails/Health.text = "Health: " + str(int(GlobalValues.opponent[0])) + "/" + str(enemyMaxHealth)
+		_enemy_attack()
 		GlobalValues.affinityModifier += 1
 		$EnemyDetails/Affinity.text = GlobalValues.affinityElement + " at strenght " + str(GlobalValues.affinityModifier)
-		_enemy_attack()
-		$EnemyDetails/Health.text = "Health: " + str(int(GlobalValues.opponent[0])) + "/" + str(enemyMaxHealth)
 
 
-func _on_skip_pressed() -> void:
+func _guard() -> void:
+	guardType = %guardTypes.get_item_text(%guardTypes.selected)
+	guardAmount = 2
 	await _run_dialog("You bide your time")
+	await _run_dialog("defense against " + guardType + " is boosted for the turn")
 	_on_turn_advanced()
 
 func _attack_affinity(type: String, baseDamage: int) -> int:
