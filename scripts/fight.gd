@@ -31,11 +31,9 @@ func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://menus/battle_menus/select.tscn")
 
 func _on_turn_advanced():
-	#print(GlobalValues.opponent)
-	#print("value " + str(GlobalValues.affinityModifier) + " is " + str(GlobalValues.opponent[GlobalValues.affinityModifier]))
-	GlobalValues.affinityModifier += 1
-	$EnemyDetails/Health.text = "Health: " + str(int(GlobalValues.opponent[0])) + "/" + str(enemyMaxHealth)
 	if GlobalValues.opponent[0] <= 0:
+		GlobalValues.opponent[0] = 0
+		$EnemyDetails/Health.text = "Health: " + str(int(GlobalValues.opponent[0])) + "/" + str(enemyMaxHealth)
 		await _run_dialog(str($EnemyDetails/Name.text) + " Defeated")
 		await _run_dialog("You Earn " + str(int(GlobalValues.opponent[4].xp)) + " XP and " + str(int(GlobalValues.opponent[4].bittergem)) + " Bittergems")
 		GlobalValues.xp += GlobalValues.opponent[4].xp
@@ -45,8 +43,10 @@ func _on_turn_advanced():
 		GlobalValues.opponent = null
 		get_tree().change_scene_to_file("res://menus/hub_menu.tscn")
 	else:
+		GlobalValues.affinityModifier += 1
 		$EnemyDetails/Affinity.text = GlobalValues.affinityElement + " at strenght " + str(GlobalValues.affinityModifier)
 		_enemy_attack()
+		$EnemyDetails/Health.text = "Health: " + str(int(GlobalValues.opponent[0])) + "/" + str(enemyMaxHealth)
 
 
 func _on_skip_pressed() -> void:
