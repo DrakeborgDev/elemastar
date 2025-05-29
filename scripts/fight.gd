@@ -30,6 +30,8 @@ func _enemy_attack():
 	if dmg <= 0:
 		dmg = 0
 	GlobalValues.playerCurentHealth -= dmg
+	guardAmount = 0
+	guardType = ""
 	await _run_dialog("Opponent deals " + str(dmg) + " " +  activeAttack.type + " damage")
 	if GlobalValues.playerCurentHealth <= 0:
 		await _run_dialog("mission failed, you'll get them next time")
