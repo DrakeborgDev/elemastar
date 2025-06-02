@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://kspesjnon7yp"]
+[gd_scene load_steps=10 format=3 uid="uid://kspesjnon7yp"]
 
 [ext_resource type="Script" uid="uid://chru4df5d44h2" path="res://scripts/fight.gd" id="1_cic3x"]
 [ext_resource type="Theme" uid="uid://dt3hbvp3xbydq" path="res://menus/themes/skill_tree.tres" id="2_5btyb"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b5sn1dtofrhkj" path="res://sprites/Confirm Icon.png" id="3_4h40r"]
 [ext_resource type="Texture2D" uid="uid://cplo544wghvxw" path="res://sprites/guard_button.png" id="3_en7oj"]
 [ext_resource type="Texture2D" uid="uid://dktq6c1nha4tu" path="res://sprites/guard_button_pressed.png" id="4_l13we"]
+[ext_resource type="Texture2D" uid="uid://dfehcv4fnsad3" path="res://sprites/player_battle.png" id="7_l13we"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0pd4y"]
 atlas = ExtResource("2_82uip")
@@ -130,6 +131,11 @@ layout_mode = 2
 keep_pressed_outside = true
 texture_normal = ExtResource("3_4h40r")
 stretch_mode = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(220, 317)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("7_l13we")
 
 [connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/fight" to="." method="_on_fight_pressed"]
