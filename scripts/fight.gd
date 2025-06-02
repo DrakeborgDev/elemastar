@@ -92,9 +92,23 @@ func _on_fight_pressed() -> void:
 	_check_passives(selectedAttack.type)
 	var dmg = _attack_affinity(selectedAttack.type, int(selectedAttack.active.damage) + _check_passives(selectedAttack.type))
 	GlobalValues.opponent[0] -= dmg
+	var onPlayer = selectedAttack.onPlayer if ("onPlayer" in selectedAttack) else true
+	_playerAnim(selectedAttack.name, onPlayer)
 	$EnemyDetails/Health.text = "Health: " + str(int(GlobalValues.opponent[0])) + "/" + str(enemyMaxHealth)
 	await _run_dialog("You deal " + str(dmg) + " " + selectedAttack.type + " damage")
 	_on_turn_advanced()
+
+func _playerAnim(attack: String, onplayer: bool = true):
+	print(attack)
+	if onplayer:
+		$playerSprite.play(attack)
+		await $playerSprite.animation_finished
+		$playerSprite.play("idle")
+	else:
+		$playerAttack.show()
+		$playerAttack.play(attack)
+		await $playerAttack.animation_finished
+		$playerAttack.hide()
 
 func _load_enemy():
 	var enemyDir = "res://JSON/Enemies/" + GlobalValues.opponent +".json"
@@ -106,6 +120,15 @@ func _load_enemy():
 		enemyMaxHealth = int(data.health)
 		$EnemyDetails/Name.text = data.name
 		$EnemyDetails/Health.text = "Health: " + str(int(data.health)) + "/" + str(enemyMaxHealth)
+		if data.sprite == "enemies/jellyfish":
+			%enemySprite.rotation += 45
+		var spritepath = "res://sprites/"+data.sprite+".png"
+		print(spritepath)
+		if FileAccess.file_exists(spritepath):
+			%enemySprite.texture = load(spritepath)
+		else:
+			%enemySprite.texture = load("res://sprites/placeholder.png")
+			%enemySprite.flip_v = true
 		GlobalValues.opponent = [data.health] #0
 		GlobalValues.opponent.append(data.attacks)#1
 		GlobalValues.opponent.append(data.weaknesses)#2
