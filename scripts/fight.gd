@@ -11,7 +11,7 @@ func _ready() -> void:
 	$PlayerDetails/BitterGem.text = "Bittergems: "+str(int(GlobalValues.bittergems))
 	$PlayerDetails/XP.text = "XP: "+str(int(GlobalValues.xp))
 	$PlayerDetails/Health.text = "Health: "+str(int(GlobalValues.playerCurentHealth)) + "/" + str(int(GlobalValues.playerMaxHealth))
-	$EnemyDetails/Affinity.text = GlobalValues.affinityElement + " at strenght " + str(GlobalValues.affinityModifier)
+	$EnemyDetails/Affinity.text = GlobalValues.affinityElement + " at strength " + str(GlobalValues.affinityModifier)
 	_load_enemy()
 	_load_player_attacks()
 	await _run_dialog(GlobalValues.affinityElement + " type attacks are boosted this fight")
@@ -58,7 +58,7 @@ func _on_turn_advanced():
 		
 		_enemy_attack()
 		GlobalValues.affinityModifier += 1
-		$EnemyDetails/Affinity.text = GlobalValues.affinityElement + " at strenght " + str(GlobalValues.affinityModifier)
+		$EnemyDetails/Affinity.text = GlobalValues.affinityElement + " at strength " + str(GlobalValues.affinityModifier)
 
 
 func _guard() -> void:
