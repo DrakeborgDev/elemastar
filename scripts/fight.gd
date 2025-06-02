@@ -55,7 +55,7 @@ func _on_turn_advanced():
 		GlobalValues.opponent = null
 		get_tree().change_scene_to_file("res://menus/hub_menu.tscn")
 	else:
-		$EnemyDetails/Health.text = "Health: " + str(int(GlobalValues.opponent[0])) + "/" + str(enemyMaxHealth)
+		
 		_enemy_attack()
 		GlobalValues.affinityModifier += 1
 		$EnemyDetails/Affinity.text = GlobalValues.affinityElement + " at strenght " + str(GlobalValues.affinityModifier)
@@ -89,8 +89,9 @@ func _on_fight_pressed() -> void:
 	var selectedAttack = equippedAttacks[%SelectedSkill.selected]
 	_check_passives(selectedAttack.type)
 	var dmg = _attack_affinity(selectedAttack.type, int(selectedAttack.active.damage) + _check_passives(selectedAttack.type))
-	await _run_dialog("You deal " + str(dmg) + " " + selectedAttack.type + " damage")
 	GlobalValues.opponent[0] -= dmg
+	$EnemyDetails/Health.text = "Health: " + str(int(GlobalValues.opponent[0])) + "/" + str(enemyMaxHealth)
+	await _run_dialog("You deal " + str(dmg) + " " + selectedAttack.type + " damage")
 	_on_turn_advanced()
 
 func _load_enemy():

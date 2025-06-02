@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://ci2col70bog6f"]
+[gd_scene load_steps=5 format=3 uid="uid://ci2col70bog6f"]
 
 [ext_resource type="Script" uid="uid://12x5njnb1cls" path="res://scripts/hub_menu.gd" id="1_pg5m2"]
+[ext_resource type="Texture2D" uid="uid://ce444umjubft7" path="res://sprites/attack_button.png" id="2_jeian"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rq7hl"]
+atlas = ExtResource("2_jeian")
+region = Rect2(0, 99.5, 96, 92.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0glhb"]
+atlas = ExtResource("2_jeian")
+region = Rect2(0, 3.5, 96, 92)
 
 [node name="HubMenu" type="Node2D"]
 script = ExtResource("1_pg5m2")
@@ -15,9 +24,10 @@ offset_bottom = 345.0
 layout_mode = 2
 alignment = 1
 
-[node name="Battle" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="fight" type="TextureButton" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Battle"
+texture_normal = SubResource("AtlasTexture_rq7hl")
+texture_pressed = SubResource("AtlasTexture_0glhb")
 
 [node name="Upgrade" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -31,7 +41,7 @@ text = "Shop"
 layout_mode = 2
 text = "Main menu"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Battle" to="." method="_on_battle_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/fight" to="." method="_on_battle_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Upgrade" to="." method="_on_upgrade_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Shop" to="." method="_on_shop_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Main Menu" to="." method="_on_main_menu_pressed"]

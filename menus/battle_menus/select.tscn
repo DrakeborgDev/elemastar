@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4v4pg7qsaqjk"]
+[gd_scene load_steps=5 format=3 uid="uid://c4v4pg7qsaqjk"]
 
 [ext_resource type="Script" uid="uid://bw2ntvapwjs7h" path="res://scripts/battle_select.gd" id="1_2hlqo"]
+[ext_resource type="Texture2D" uid="uid://ce444umjubft7" path="res://sprites/attack_button.png" id="2_1hkc7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6to0"]
+atlas = ExtResource("2_1hkc7")
+region = Rect2(0, 99.5, 96, 92.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ey2s6"]
+atlas = ExtResource("2_1hkc7")
+region = Rect2(0, 3.5, 96, 92)
 
 [node name="BattleSelect" type="Node2D"]
 script = ExtResource("1_2hlqo")
@@ -11,20 +20,21 @@ offset_top = 88.0
 offset_right = 595.0
 offset_bottom = 154.0
 
-[node name="back" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Back"
-
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+
+[node name="fight" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_a6to0")
+texture_pressed = SubResource("AtlasTexture_ey2s6")
 
 [node name="regionSelector" type="OptionButton" parent="VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="fight" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="back" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "FIGHT!"
+text = "Back"
 
-[connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/fight" to="." method="_on_fight_pressed"]
+[connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]

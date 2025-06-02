@@ -20,7 +20,6 @@ func _check_skills(ownedSkills):
 					pass
 				else:
 					exclude = true
-
 			if !exclude:
 				%purchasable.add_child(Button.new())
 				availableSkills.append(data)
@@ -29,13 +28,18 @@ func _check_skills(ownedSkills):
 						if child.text == "":
 							child.text = data.name
 							child.connect("pressed", _purchase_attempt)
-							child.tooltip_text = "This skill costs " + str(int(data.unlock)) + " Bittergems"
+							child.tooltip_text = "This " + data.type + " skill costs " + str(int(data.unlock)) + " Bittergems"
 							print("Added " + data.name)
 		else:
 			print("JSON Parse Error: ", json.get_error_message(), " in ", file, " at line ", json.get_error_line())
 
 func _ready() -> void:
-	%Heal.text = "heal for " + str(int(GlobalValues.playerMaxHealth - GlobalValues.playerCurentHealth)) + "hp?"
+	if GlobalValues.playerCurentHealth >= GlobalValues.playerMaxHealth:
+		%Heal.text = "At full health"
+		%Heal.disabled = true
+	else:
+		%Heal.text = "heal to full?"
+		%Heal.tooltip_text = "costs 2 bittergems"
 	var ownedSkills = GlobalValues.equipped.duplicate()
 	ownedSkills.append_array(GlobalValues.unlocked.duplicate())
 	availableSkills = []
@@ -73,11 +77,13 @@ func _on_heal_pressed() -> void:
 		if GlobalValues.bittergems >= 2:
 			GlobalValues.bittergems -= 2
 			GlobalValues.playerCurentHealth += int(GlobalValues.playerMaxHealth - GlobalValues.playerCurentHealth)
+			%Heal.text = "At full health"
+			%Heal.disabled = true
 		else:
 			print("not enough bittergems")
 	else:
 		print("already full on health")
-	%Heal.text = "heal for " + str(int(GlobalValues.playerMaxHealth - GlobalValues.playerCurentHealth)) + "hp?"
+	%GemCount.text = "You have " + str(int(GlobalValues.bittergems)) + " Bittergems"
 
 
 func _on_equip_pressed() -> void:
