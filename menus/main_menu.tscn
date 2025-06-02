@@ -19,5 +19,13 @@ offset_right = 832.0
 offset_bottom = 448.0
 text = "Settings"
 
+[node name="exit" type="Button" parent="."]
+offset_left = 320.0
+offset_top = 506.0
+offset_right = 832.0
+offset_bottom = 570.0
+text = "Exit"
+
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="exit" to="." method="_on_exit_pressed"]

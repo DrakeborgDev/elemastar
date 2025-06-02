@@ -1,7 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://kspesjnon7yp"]
+[gd_scene load_steps=11 format=3 uid="uid://kspesjnon7yp"]
 
 [ext_resource type="Script" uid="uid://chru4df5d44h2" path="res://scripts/fight.gd" id="1_cic3x"]
-[ext_resource type="Theme" uid="uid://dt3hbvp3xbydq" path="res://menus/themes/skill_tree.tres" id="2_5btyb"]
 [ext_resource type="Texture2D" uid="uid://ce444umjubft7" path="res://sprites/attack_button.png" id="2_82uip"]
 [ext_resource type="Texture2D" uid="uid://b5sn1dtofrhkj" path="res://sprites/Confirm Icon.png" id="3_4h40r"]
 [ext_resource type="Texture2D" uid="uid://cplo544wghvxw" path="res://sprites/guard_button.png" id="3_en7oj"]
@@ -15,6 +14,12 @@ region = Rect2(0, 99.5, 96, 92.5)
 [sub_resource type="AtlasTexture" id="AtlasTexture_en7oj"]
 atlas = ExtResource("2_82uip")
 region = Rect2(0, 3.5, 96, 92)
+
+[sub_resource type="InputEventKey" id="InputEventKey_l13we"]
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_d38mm"]
+events = [SubResource("InputEventKey_l13we")]
 
 [node name="Fight" type="Node2D"]
 script = ExtResource("1_cic3x")
@@ -120,22 +125,34 @@ columns = 2
 [node name="DialogBox" type="Label" parent="GridContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-theme = ExtResource("2_5btyb")
 theme_override_font_sizes/font_size = 31
 text = "battle messages go here"
 
 [node name="Continue" type="TextureButton" parent="GridContainer"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 keep_pressed_outside = true
+shortcut = SubResource("Shortcut_d38mm")
+shortcut_in_tooltip = false
 texture_normal = ExtResource("3_4h40r")
-stretch_mode = 0
+stretch_mode = 5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(220, 317)
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("7_l13we")
+
+[node name="barContainer" type="PanelContainer" parent="."]
+offset_left = 63.0
+offset_top = 427.0
+offset_right = 103.0
+offset_bottom = 443.0
+scale = Vector2(3.56402, 2.52592)
+
+[node name="playerhpbar" type="HSlider" parent="barContainer"]
+self_modulate = Color(1, 0.419333, 0.33, 1)
+layout_mode = 2
+scrollable = false
 
 [connection signal="pressed" from="VBoxContainer/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/VBoxContainer/fight" to="." method="_on_fight_pressed"]

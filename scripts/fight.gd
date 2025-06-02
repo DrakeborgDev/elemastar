@@ -11,6 +11,8 @@ func _ready() -> void:
 	$PlayerDetails/BitterGem.text = "Bittergems: "+str(int(GlobalValues.bittergems))
 	$PlayerDetails/XP.text = "XP: "+str(int(GlobalValues.xp))
 	$PlayerDetails/Health.text = "Health: "+str(int(GlobalValues.playerCurentHealth)) + "/" + str(int(GlobalValues.playerMaxHealth))
+	$barContainer/playerhpbar.max_value = GlobalValues.playerMaxHealth
+	$barContainer/playerhpbar.value = GlobalValues.playerMaxHealth
 	$EnemyDetails/Affinity.text = GlobalValues.affinityElement + " at strength " + str(GlobalValues.affinityModifier)
 	_load_enemy()
 	_load_player_attacks()
