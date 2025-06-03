@@ -123,12 +123,8 @@ func _load_enemy():
 		if data.sprite == "enemies/jellyfish":
 			%enemySprite.rotation += 45
 		var spritepath = "res://sprites/"+data.sprite+".png"
-		print(spritepath)
-		if FileAccess.file_exists(spritepath):
-			%enemySprite.texture = load(spritepath)
-		else:
-			%enemySprite.texture = load("res://sprites/placeholder.png")
-			%enemySprite.flip_v = true
+		print("loading: " + spritepath)
+		%enemySprite.texture = load(spritepath)
 		GlobalValues.opponent = [data.health] #0
 		GlobalValues.opponent.append(data.attacks)#1
 		GlobalValues.opponent.append(data.weaknesses)#2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://kspesjnon7yp"]
+[gd_scene load_steps=76 format=3 uid="uid://kspesjnon7yp"]
 
 [ext_resource type="Script" uid="uid://chru4df5d44h2" path="res://scripts/fight.gd" id="1_cic3x"]
 [ext_resource type="Texture2D" uid="uid://ce444umjubft7" path="res://sprites/attack_button.png" id="2_82uip"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d4chslg2a2gfi" path="res://sprites/player/fireboltSheet.png" id="6_en7oj"]
 [ext_resource type="Texture2D" uid="uid://6rd0itnb1o75" path="res://sprites/player/frightenSheet.png" id="7_d38mm"]
 [ext_resource type="Texture2D" uid="uid://ry4bkbvwv1or" path="res://sprites/shared/solarRay.png" id="7_l13we"]
+[ext_resource type="Texture2D" uid="uid://bev3mrfq8wid4" path="res://sprites/placeholder.png" id="9_jf116"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0pd4y"]
 atlas = ExtResource("2_82uip")
@@ -641,6 +642,7 @@ offset_bottom = 299.0
 
 [node name="enemySprite" type="Sprite2D" parent="VBoxContainer2"]
 unique_name_in_owner = true
+texture = ExtResource("9_jf116")
 
 [node name="enemyHealthBar" type="HSlider" parent="VBoxContainer2"]
 visible = false
