@@ -11,5 +11,6 @@
 			"scale": "amount"
 		}
 	},
-	"unlock": 1
+	"unlock": 1,
+	"onPlayer": true
 }
